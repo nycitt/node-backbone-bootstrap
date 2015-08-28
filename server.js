@@ -16,7 +16,7 @@ var app = {
 		this.setupServer();
 	},
 
-	setupConfig: function () { 
+	setupConfig: function () {
 		try {
 			config = require('./config');
 		} catch (e) {
@@ -40,7 +40,8 @@ var app = {
 
 	setupServer: function () {
 		var app = express()
-			.use(express.static(__dirname + '/public'));
+			.use(express.static(__dirname + '/public'))
+			.use('/node_modules', express.static(__dirname + '/node_modules'))
        		.use(bodyParser.json());
 
        	this.server = http

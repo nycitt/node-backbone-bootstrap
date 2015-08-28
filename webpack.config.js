@@ -6,6 +6,8 @@ module.exports = {
     },
     module: {
         loaders: [
+            { test: /\.css$/, loader: "style-loader!css-loader" },
+
             { test: /\.hbs$/, loader: "handlebars-loader" },
             { test: /\.json$/, loader: "json-loader" },
             { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
