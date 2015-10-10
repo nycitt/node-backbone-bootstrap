@@ -59,7 +59,7 @@ module.exports = {
 
 			}));
 
-       	http
+       	this.server = http
        		.Server(this.app)
        		.listen(this.config.port);
 	},
@@ -81,8 +81,13 @@ module.exports = {
 	socket: function () {
 		var socket = require('socket.io');
 		var io = socket(this.server);
-		io.on('connection', _.bind(function(socket){
-		  this.socket = socket;
+		
+		this.socket = {};
+
+		io.on('connection', _.bind(function (socket) {
+		  var uniqueId = _.random(0, 100000000);
+		  this.socket[uniqueId] = socket;
+		  socket.emit('id', uniqueId);
 		}, this));
 	},
 
@@ -103,6 +108,7 @@ module.exports = {
 	},
 
 	parse: function () {
+		var Parse = require('parse/node');
 		Parse.initialize(
 			this.config.parse.appKey,
 			this.config.parse.jsKey,
