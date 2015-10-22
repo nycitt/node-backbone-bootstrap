@@ -93,7 +93,7 @@ module.exports = {
 
 	mailgun: function () {
 		var Mailgun = require('mailgun').Mailgun;
-		this.mailgun = new Mailgun(config.mailgunKey);
+		this.mailgun = new Mailgun(this.config.mailgun.key);
 	},
 
 	localTunnel: function () {
